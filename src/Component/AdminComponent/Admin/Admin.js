@@ -6,7 +6,7 @@ import Sidebar from '../Sidebar/Sidebar';
 const Admin = () => {
 
   const [students, setStudents] = useState([]);
-  console.log(students)
+  
 
 
   useEffect(() => {

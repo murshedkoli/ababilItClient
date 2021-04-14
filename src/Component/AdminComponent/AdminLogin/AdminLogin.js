@@ -12,7 +12,9 @@ let history = useHistory();
 const [loggedInUser, setLoggedInUser] =  useContext(mainUser);
 
 
-  
+const [logingStatus, setLoginStatus] = useState({
+    notsuccess:''
+})
 
 
 const [loginformData, setLoginFormData] = useState({});
@@ -34,16 +36,25 @@ const handleLoginSubmit =(e)=>{
             })
             .then(res => res.json())
             .then(data => {
-                setLoggedInUser(data)
+                if(data.length){
+                setLoggedInUser(data[0])
                 sessionStorage.setItem('email', data.email);
                 history.push('/admin')
+                }else{
+                    const loginStatusNew = {...logingStatus};
+                    loginStatusNew.notsuccess= "Your mail or Password Not Matched";
+                    setLoginStatus(loginStatusNew);
+                }
             })
+          
     e.preventDefault();
 }
 
 
     return (
         <div style={{ margin:'70px auto'}} className="col-md-4 col-sm-9">
+
+            
            
             {
                 loggedInUser.email ? <div> <h1>{loggedInUser.Name} you are Logged In Now....</h1></div>:
@@ -57,7 +68,7 @@ const handleLoginSubmit =(e)=>{
                         <label for="exampleInputPassword1">Password</label>
                         <input onBlur={handleOnBlur} type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password" required/>
                         </div><br/>
-                        
+                        <p style={{color:'red', textAlign:'center'}}>{logingStatus.notsuccess}</p><br/>
                          <button style={{width:'100%'}} type="submit" class="btn btn-outline-primary">Login</button>
                     </form>
             }
