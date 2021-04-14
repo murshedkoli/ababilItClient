@@ -15,7 +15,7 @@ const NewApplication = () => {
   })
 
   useEffect(() => {
-    fetch('http://localhost:5000/studentsapply')
+    fetch('https://ababil-it-server.herokuapp.com/studentsapply')
       .then(res => res.json())
       .then(data => {
 

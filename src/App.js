@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useState } from "react";
+import React, { createContext, useState } from "react";
 import './App.css';
 import {
   BrowserRouter as Router,
@@ -46,13 +46,13 @@ const [loggedInUser, setLoggedInUser] = useState({});
               <StudentsPublic></StudentsPublic>
             </Route>
 
-            <Route path="/admin">
+            <PrivateRoute path="/admin">
               <Admin></Admin>
-            </Route>
+            </PrivateRoute>
 
-            <Route  path="/newapplication">
+            <PrivateRoute  path="/newapplication">
               <NewApplicatin></NewApplicatin>
-            </Route>
+            </PrivateRoute>
 
 
           </Switch>

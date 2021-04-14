@@ -1,5 +1,5 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { useHistory, useLocation } from 'react-router';
+import React, { useContext, useState } from 'react';
+import { useHistory } from 'react-router';
 import { mainUser } from '../../../App';
 
 
@@ -27,7 +27,7 @@ const handleOnBlur = e=>{
 
 const handleLoginSubmit =(e)=>{
 
-    fetch('http://localhost:5000/admin/login', {
+    fetch('https://ababil-it-server.herokuapp.com/admin/login', {
                 method:'POST',
                 headers:{'Content-Type':'application/json'},
                 body:JSON.stringify(loginformData)

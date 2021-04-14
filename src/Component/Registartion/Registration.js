@@ -5,7 +5,7 @@ import RegistrationForm from './RegistrationForm';
 
 const Registration = () => {
 
-const [loggedInUser, setLoggedInUser] = useContext(mainUser);
+const [loggedInUser] = useContext(mainUser);
 
     return (
         <div style={{

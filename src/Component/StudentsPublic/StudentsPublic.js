@@ -10,7 +10,7 @@ console.log(students)
 
 
   useEffect(() => {
-    fetch('http://localhost:5000/students')
+    fetch('https://ababil-it-server.herokuapp.com/students')
       .then(res => res.json())
       .then(data => {
 

@@ -62,7 +62,7 @@ const handleSubmitForm =(e)=>{
     }
 
     console.log(studentData)
-    fetch('http://localhost:5000/addstudent', {
+    fetch('https://ababil-it-server.herokuapp.com/addstudent', {
         method:'POST',
         headers:{'Content-Type':'application/json'},
         body:JSON.stringify(studentData)
@@ -95,7 +95,7 @@ const handleSubmitForm =(e)=>{
 //     password:'Murshed@@@k5'
 // };
 
-// fetch('http://localhost:5000/admin', {
+// fetch('https://ababil-it-server.herokuapp.com/admin', {
 //         method:'POST',
 //         headers:{'Content-Type':'application/json'},
 //         body:JSON.stringify(admin)

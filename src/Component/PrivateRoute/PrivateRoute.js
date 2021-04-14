@@ -1,10 +1,10 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { Redirect, Route } from 'react-router';
 import { mainUser } from '../../App';
 
 const PrivateRoute = ({ children, ...rest }) => {
 
-const [loggedInUser, setLoggedInUser] = useContext(mainUser);
+const [loggedInUser] = useContext(mainUser);
 
 
   

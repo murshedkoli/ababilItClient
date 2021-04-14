@@ -1,24 +1,21 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { mainUser } from '../../../App';
+import React, {  useEffect, useState } from 'react';
 import Header from '../../Home/Header/Header';
 import Sidebar from '../Sidebar/Sidebar';
-import SingleStudent from '../SingleStudent/SingleStudent';
 
 
 const Admin = () => {
-  const [loggedInUser, setLoggedInUser] = useContext(mainUser);
 
-const [students, setStudents] = useState([]);
-console.log(students)
+  const [students, setStudents] = useState([]);
+  console.log(students)
 
 
   useEffect(() => {
-    fetch('http://localhost:5000/students')
+    fetch('https://ababil-it-server.herokuapp.com/students')
       .then(res => res.json())
       .then(data => {
 
         setStudents(data)
- 
+
       })
   }, [])
 
@@ -54,7 +51,7 @@ console.log(students)
             {
               students.map((student, index) => <tr>
                 <th >{index + 1}</th>
-                <th ><img style={{width:'100px'}} src={student.imgUrl} alt=""/></th>
+                <th ><img style={{ width: '100px' }} src={student.imgUrl} alt="" /></th>
                 <td>{student.name}</td>
                 <td>{new Date(student.addmissionDate).toDateString()}</td>
                 <td>{student.paymentAmmount}</td>
