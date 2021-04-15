@@ -65,8 +65,10 @@ const handlConfirm= (id, name)=>{
 
     return (
         <div>
+
+            <h1 style={{textAlign:'center', color:'white'}}>All Application Here</h1>
  
-            <table class="table">
+            <table class="table table-striped table-dark">
 
                 <thead>
                     <tr>

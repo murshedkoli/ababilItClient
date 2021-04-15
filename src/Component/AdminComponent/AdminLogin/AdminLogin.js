@@ -15,13 +15,17 @@ const firebaseConfig = {
     appId: "1:223483497609:web:7e4965451f0aacd6b88a58"
   };
 
-
-
+  if (!firebase.apps.length) {
     firebase.initializeApp(firebaseConfig);
+ }
+
+    
 
 const AdminLogin = () => {
 
   document.title = "Admin Login - Ababil Information Technology"
+  
+  const [notification, setNotification] = useState('');
 
 let history = useHistory();
 
@@ -42,8 +46,16 @@ const googleLogin= ()=>{
 
     // var token = credential.accessToken;
     var user = result.user;
-    setLoggedInUser(user)
-    history.push('/admin')
+    if(user.email === 'murshedkoli@gmail.com'){
+     
+      const forSession= JSON.stringify(user)
+      sessionStorage.setItem('user', forSession);
+           
+    history.push('/admin');
+    setNotification("");
+    }else{
+      setNotification("You are not Authorized Admin");
+    }
   }).catch((error) => {
 
     var errorMessage = error.message;
@@ -75,7 +87,8 @@ const handleLoginSubmit =(e)=>{
             .then(data => {
                 if(data.length){
                 setLoggedInUser(data[0])
-                sessionStorage.setItem('email', data.email);
+                sessionStorage.setItem('user', data);
+                console.log(data)
                 history.push('/admin')
                 }else{
                     // const loginStatusNew = {...logingStatus};
@@ -97,6 +110,8 @@ const handleLoginSubmit =(e)=>{
                 loggedInUser.email ? <div> <h1>{loggedInUser.Name} you are Logged In Now....</h1></div>:
               <div>
                     <form onSubmit={handleLoginSubmit} style={{ padding: '40px', borderRadius: '20px', boxShadow: '2px 0px 10px', backgroundColor: 'white' }}>
+                    <h3 className="text-center" style={{color:'red'}}>{notification}</h3>
+
                 <div class="form-group">
                     <label for="exampleInputEmail1">Email address</label>
                     <input onBlur={handleOnBlur} type="email" class="form-control " name="email" id="exampleInputEmail1"  placeholder="Enter email" required/>
@@ -107,10 +122,10 @@ const handleLoginSubmit =(e)=>{
                         <input onBlur={handleOnBlur} type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password" required/>
                         </div><br/>
                         {/* <p style={{color:'red', textAlign:'center'}}>{logingStatus.notsuccess}</p><br/> */}
-                         <button style={{width:'100%'}} type="submit" class="btn btn-outline-primary">Login</button>
+                         <button style={{width:'100%'}} type="submit" class="btn btn-outline-primary">Login</button><br/><br/>
+                         <button onClick={googleLogin} style={{width:'100%'}} type="submit" class="btn btn-primary">Login with Google</button>
                     </form>
 
-                     <button onClick={googleLogin} style={{width:'100%'}} type="submit" class="btn btn-primary">Login with Google</button>
               </div>
             }
 

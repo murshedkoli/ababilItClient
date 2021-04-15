@@ -56,7 +56,7 @@ const totalPayment =()=>{
                                     <th >{index + 1}</th>
                                     <td>{student.name}</td>
                                     <td>{student.course}</td>
-                                    <td>{student.paymentAmmount}</td>
+                                    <td>{student.paymentAmmount} Taka</td>
                                 </tr>)
 
 

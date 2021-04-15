@@ -91,9 +91,10 @@ const Admin = () => {
       <Sidebar></Sidebar>
 
       <div style={{ marginLeft: '260px' }}>
+      <h1 style={{textAlign:'center', color:'white'}}>All Student Here</h1>
 
 
-        <table class="table">
+        <table class="table table-striped table-dark">
           <thead>
             <tr>
               <th scope="col">Sl No.</th>
@@ -113,7 +114,7 @@ const Admin = () => {
                 <th ><img style={{ width: '100px' }} src={student.imgUrl} alt="" /></th>
                 <td>{student.name}</td>
                 <td>{new Date(student.addmissionDate).toDateString()}</td>
-                <td>{student.paymentAmmount}</td>
+                <td>{student.paymentAmmount} Taka</td>
                 <td>{student.phoneNumber}</td>
                 <td>{student.course}</td>
                 <td><button onClick={()=> handlConfirm(student._id, student.paymentAmmount, student.name)} className="btn btn-outline-success">Update Payment</button></td>
