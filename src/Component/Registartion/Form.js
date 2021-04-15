@@ -1,11 +1,14 @@
 import React from 'react';
 
 const Form = ({handleImgUpload, handleOnBlur, handlePopUp}) => {
+
+
+
     return (
         <div>
                     <h1 style={{ fontWeight: 'bold', color: 'white', textAlign: 'center' }}>Registraion For Course</h1>
  
- <form onSubmit={handlePopUp} style={{ padding: '40px', borderRadius: '20px', boxShadow: '2px 0px 10px', backgroundColor: 'white' }}>
+ <form name="registrationForm" onSubmit={handlePopUp} style={{ padding: '40px', borderRadius: '20px', boxShadow: '2px 0px 10px', backgroundColor: 'white' }}>
 
      <select onBlur={handleOnBlur} class="form-select" aria-label="Default select example" name="selectedCourse" required>
          <option selected>Select Your Course</option>

@@ -54,7 +54,7 @@ const googleLogin= ()=>{
     history.push('/admin');
     setNotification("");
     }else{
-      setNotification("You are not Authorized Admin");
+      setNotification(` Hey ${user.displayName} you are not Authorized Admin`);
     }
   }).catch((error) => {
 

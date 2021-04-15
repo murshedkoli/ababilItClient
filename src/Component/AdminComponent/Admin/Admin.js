@@ -6,7 +6,9 @@ import Swal from 'sweetalert2'
 
 const Admin = () => {
 
-  document.title = "Admin Page - Ababil Information Technology"
+  
+  document.title = "Admin Page - Ababil Information Technology";
+
 
   const [students, setStudents] = useState([]);
   
@@ -49,8 +51,10 @@ const Admin = () => {
 
  const handlConfirm= (id, oldPayment, name)=>{
 
+  
 
   Swal.fire({
+    
       title: 'Update Payment',
       html: `<input type="number" id="paidAmmount" class="swal2-input" placeholder="Paid Ammount">`,
       confirmButtonText: 'Confirm Payment',

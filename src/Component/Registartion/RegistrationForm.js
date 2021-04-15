@@ -99,23 +99,35 @@ const RegistrationForm = () => {
 const handlePopUp =(e)=>{
 
 
-    swal({
-        title: "Are you sure?",
-        text: `Submit Application "${formData.selectedCourse}" Course`,
-        icon: "warning",
-        buttons:  ["Cencel","Submit"] ,
-        dangerMode: true,
-    })
-        .then((willDelete) => {
-            if (willDelete) {
-                swal(`You Successfully Register for"${formData.selectedCourse}" Course`, {
-                    icon: "success",
-                    buttons:handleSubmitForm(),
-                });
-            } else {
-                swal("Your Application Not Successfully Submited");
-            }
-        });
+    if(formData.studentPhoneNumber.length===11 || formData.fatherPhoneNumber.length===11){
+        swal({
+            title: `Hey ${formData.studentName} Are you sure?`,
+            text: `Submit Application For "${formData.selectedCourse}" Course`,
+            icon: "warning",
+            buttons:  ["Cencel","Submit"] ,
+            dangerMode: true,
+        })
+            .then((willDelete) => {
+                if (willDelete) {
+                    swal(`${formData.studentName} Successfully Register for"${formData.selectedCourse}" Course`, {
+                        icon: "success",
+                        buttons:handleSubmitForm(),
+                    });
+                } else {
+                    swal("Your Application Not Successfully Submited");
+                }
+            });
+
+
+    }
+    else{
+        swal("Please Give Correct Phone Number!", `Your Phone Number: ${formData.studentPhoneNumber} 
+         Or 
+         Your Father's Phone Number :${formData.fatherPhoneNumber} are Not Valid. !`, "warning");
+    }
+
+ 
+
         e.preventDefault();
 }
 
