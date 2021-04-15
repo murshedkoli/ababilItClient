@@ -1,8 +1,23 @@
 import React, { useContext, useState } from 'react';
 import { useHistory } from 'react-router';
 import { mainUser } from '../../../App';
+import "firebase/auth";
+import firebase from "firebase/app";
 
 
+
+const firebaseConfig = {
+    apiKey: "AIzaSyD9QMMjMISRDFJiouqBaT_2AoGa8gCXml4",
+    authDomain: "ababil-it.firebaseapp.com",
+    projectId: "ababil-it",
+    storageBucket: "ababil-it.appspot.com",
+    messagingSenderId: "223483497609",
+    appId: "1:223483497609:web:7e4965451f0aacd6b88a58"
+  };
+
+
+
+    firebase.initializeApp(firebaseConfig);
 
 const AdminLogin = () => {
 
@@ -15,6 +30,27 @@ const [loggedInUser, setLoggedInUser] =  useContext(mainUser);
 // const [logingStatus, setLoginStatus] = useState({
 //     notsuccess:''
 // })
+
+const googleLogin= ()=>{
+    var provider = new firebase.auth.GoogleAuthProvider();
+
+    firebase.auth()
+  .signInWithPopup(provider)
+  .then((result) => {
+    // var credential = result.credential;
+
+    // var token = credential.accessToken;
+    var user = result.user;
+    setLoggedInUser(user)
+
+  }).catch((error) => {
+
+    var errorMessage = error.message;
+    var email = error.email;
+    console.log(errorMessage, email)
+  });
+}
+
 
 
 const [loginformData, setLoginFormData] = useState({});
@@ -58,7 +94,8 @@ const handleLoginSubmit =(e)=>{
            
             {
                 loggedInUser.email ? <div> <h1>{loggedInUser.Name} you are Logged In Now....</h1></div>:
-                <form onSubmit={handleLoginSubmit} style={{ padding: '40px', borderRadius: '20px', boxShadow: '2px 0px 10px', backgroundColor: 'white' }}>
+              <div>
+                    <form onSubmit={handleLoginSubmit} style={{ padding: '40px', borderRadius: '20px', boxShadow: '2px 0px 10px', backgroundColor: 'white' }}>
                 <div class="form-group">
                     <label for="exampleInputEmail1">Email address</label>
                     <input onBlur={handleOnBlur} type="email" class="form-control " name="email" id="exampleInputEmail1"  placeholder="Enter email" required/>
@@ -71,6 +108,9 @@ const handleLoginSubmit =(e)=>{
                         {/* <p style={{color:'red', textAlign:'center'}}>{logingStatus.notsuccess}</p><br/> */}
                          <button style={{width:'100%'}} type="submit" class="btn btn-outline-primary">Login</button>
                     </form>
+
+                     <button onClick={googleLogin} style={{width:'100%'}} type="submit" class="btn btn-outline-primary">Login with Google</button>
+              </div>
             }
 
 
