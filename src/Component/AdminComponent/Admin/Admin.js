@@ -6,6 +6,8 @@ import Swal from 'sweetalert2'
 
 const Admin = () => {
 
+  document.title = "Admin Page - Ababil Information Technology"
+
   const [students, setStudents] = useState([]);
   
   useEffect(() => {

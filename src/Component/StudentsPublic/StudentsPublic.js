@@ -4,6 +4,8 @@ import Header from '../Home/Header/Header';
 
 const StudentsPublic = () => {
 
+
+  document.title = "Admitted Student's - Ababil Information Technology"
     
 const [students, setStudents] = useState([]);
 console.log(students)

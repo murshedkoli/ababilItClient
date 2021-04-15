@@ -6,6 +6,8 @@ import Sidebar from '../Sidebar/Sidebar';
 
 const NewApplication = () => {
 
+  document.title = "New Student Application - Ababil Information Technology"
+
   const [students, setStudents] = useState([]);
   console.log(students)
 

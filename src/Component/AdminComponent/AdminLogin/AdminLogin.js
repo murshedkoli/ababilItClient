@@ -21,6 +21,7 @@ const firebaseConfig = {
 
 const AdminLogin = () => {
 
+  document.title = "Admin Login - Ababil Information Technology"
 
 let history = useHistory();
 
@@ -42,7 +43,7 @@ const googleLogin= ()=>{
     // var token = credential.accessToken;
     var user = result.user;
     setLoggedInUser(user)
-
+    history.push('/admin')
   }).catch((error) => {
 
     var errorMessage = error.message;

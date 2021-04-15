@@ -18,7 +18,7 @@ const Header = () => {
                 <li><Link to="/courses">Courses</Link></li>
                 <li><Link to="/publicstudents">Students</Link></li>
                 <li><Link>Contact</Link></li>
-                <li><Link to="/admin">Dashboard</Link></li>
+                {/* <li><Link to="/admin">Dashboard</Link></li> */}
                 <li><Link to="/registration">Get Admission</Link></li>
               </ul>
               <i class="bi bi-list mobile-nav-toggle"></i>

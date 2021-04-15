@@ -4,6 +4,9 @@ import Course from '../Home/Course/Course';
 
 import Header from '../Home/Header/Header';
 const Courses = () => {
+
+    document.title = "All Courses - Ababil Information Technology"
+
     return (
         <div style={{
             width: '100%',

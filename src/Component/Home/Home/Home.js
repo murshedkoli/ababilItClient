@@ -6,6 +6,10 @@ import Hero from '../Hero/Hero';
 import './Home.css'
 
 const Home = () => {
+
+    document.title = "Home Page - Ababil Information Technology"
+
+
     return (
         <div className="homediv">
                 <Header/>

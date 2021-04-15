@@ -4,6 +4,7 @@ import Header from '../Home/Header/Header';
 import RegistrationForm from './RegistrationForm';
 
 const Registration = () => {
+    document.title = "Registartion Page - Ababil It"
 
 const [loggedInUser] = useContext(mainUser);
 
