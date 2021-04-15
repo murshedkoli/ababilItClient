@@ -4,7 +4,7 @@ import './Header.css'
 
 const Header = () => {
 
-  
+  const user= JSON.parse(sessionStorage.getItem('user'));
 
     return (
         
@@ -18,7 +18,9 @@ const Header = () => {
                 <li><Link to="/courses">Courses</Link></li>
                 <li><Link to="/publicstudents">Students</Link></li>
                 <li><Link>Contact</Link></li>
-                {/* <li><Link to="/admin">Dashboard</Link></li> */}
+                {
+                  user && <li><Link to="/admin">Dashboard</Link></li>
+                }
                 <li><Link to="/registration">Get Admission</Link></li>
               </ul>
               <i class="bi bi-list mobile-nav-toggle"></i>
