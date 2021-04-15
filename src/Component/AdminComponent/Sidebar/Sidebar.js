@@ -9,8 +9,7 @@ const Sidebar = () => {
 
                 <Link to="/admin">Studens</Link>
                 <Link to="/newapplication">New Application</Link>
-                <Link>Total Payment Received</Link>
-                <Link>Add Payment</Link>
+                <Link to="/totalpayment">Total Payment Received</Link>
               
             </div>
         </div>

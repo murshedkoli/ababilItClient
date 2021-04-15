@@ -13,6 +13,7 @@ import AdminLoginPage from "./Component/AdminComponent/AdminLogin/AdminLoginPage
 import NewApplicatin from "./Component/AdminComponent/NewApplication/NewApplicatin";
 import PrivateRoute from "./Component/PrivateRoute/PrivateRoute";
 import StudentsPublic from "./Component/StudentsPublic/StudentsPublic";
+import TotalPayment from "./Component/AdminComponent/TotalPayment/TotalPayment";
 
 export const mainUser = createContext();
 
@@ -52,6 +53,10 @@ const [loggedInUser, setLoggedInUser] = useState({});
 
             <PrivateRoute  path="/newapplication">
               <NewApplicatin></NewApplicatin>
+            </PrivateRoute>
+
+            <PrivateRoute  path="/totalpayment">
+              <TotalPayment></TotalPayment>
             </PrivateRoute>
 
 
