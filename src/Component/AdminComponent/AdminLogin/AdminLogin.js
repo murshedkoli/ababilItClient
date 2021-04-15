@@ -12,9 +12,9 @@ let history = useHistory();
 const [loggedInUser, setLoggedInUser] =  useContext(mainUser);
 
 
-const [logingStatus, setLoginStatus] = useState({
-    notsuccess:''
-})
+// const [logingStatus, setLoginStatus] = useState({
+//     notsuccess:''
+// })
 
 
 const [loginformData, setLoginFormData] = useState({});
@@ -41,9 +41,9 @@ const handleLoginSubmit =(e)=>{
                 sessionStorage.setItem('email', data.email);
                 history.push('/admin')
                 }else{
-                    const loginStatusNew = {...logingStatus};
-                    loginStatusNew.notsuccess= "Your mail or Password Not Matched";
-                    setLoginStatus(loginStatusNew);
+                    // const loginStatusNew = {...logingStatus};
+                    // loginStatusNew.notsuccess= "Your mail or Password Not Matched";
+                    // setLoginStatus(loginStatusNew);
                 }
             })
           
@@ -68,7 +68,7 @@ const handleLoginSubmit =(e)=>{
                         <label for="exampleInputPassword1">Password</label>
                         <input onBlur={handleOnBlur} type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password" required/>
                         </div><br/>
-                        <p style={{color:'red', textAlign:'center'}}>{logingStatus.notsuccess}</p><br/>
+                        {/* <p style={{color:'red', textAlign:'center'}}>{logingStatus.notsuccess}</p><br/> */}
                          <button style={{width:'100%'}} type="submit" class="btn btn-outline-primary">Login</button>
                     </form>
             }
