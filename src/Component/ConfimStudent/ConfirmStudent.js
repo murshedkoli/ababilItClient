@@ -1,19 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Swal from 'sweetalert2'
 
 
 const ConfirmStudent = ({ students, setNotification, notification }) => {
-    const [formData, setFormdata] = useState({
-        paidAmount:0
-    });
-
-
-
-    const submitAddmission = (id) => {
+  
+    const submitAddmission = (id, payment) => {
 
        const dataForSubmission ={
         date:new Date(),
-        ammount : formData.paidAmount,
+        ammount : payment,
        }
 
         fetch(`https://ababil-it-server.herokuapp.com/confirm/${id}`, {
@@ -39,7 +34,7 @@ const ConfirmStudent = ({ students, setNotification, notification }) => {
           
     }
 
-const handlConfirm= id=>{
+const handlConfirm= (id, name)=>{
   
 
     Swal.fire({
@@ -53,11 +48,15 @@ const handlConfirm= id=>{
           if (!ammount) {
             Swal.showValidationMessage(`Please enter Paid Ammount`)
           }
-          submitAddmission(id)
-         const newdata = {...formData}
-         newdata.paidAmount=ammount;
-         setFormdata(newdata);
+          const paidAmount=parseInt(ammount);
+          submitAddmission(id, paidAmount)
+          return { ammount: paidAmount}
         }
+      }).then((result) => {
+     
+        Swal.fire(`
+          ${name}'s Addmission Successful & Payment ${result.value.ammount} Was Added Successfully;`
+          .trim())
       })
   
 
@@ -90,7 +89,7 @@ const handlConfirm= id=>{
 
                             <td>{student.phoneNumber}</td>
                             <td>{student.course}</td>
-                            <td><button onClick={() => handlConfirm(student._id)} className="btn btn-outline-success">Confirm</button></td>
+                            <td><button onClick={() => handlConfirm(student._id, student.name)} className="btn btn-outline-success">Confirm</button></td>
                         </tr>)
 
 

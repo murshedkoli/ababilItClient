@@ -109,7 +109,7 @@ const handleLoginSubmit =(e)=>{
                          <button style={{width:'100%'}} type="submit" class="btn btn-outline-primary">Login</button>
                     </form>
 
-                     <button onClick={googleLogin} style={{width:'100%'}} type="submit" class="btn btn-outline-primary">Login with Google</button>
+                     <button onClick={googleLogin} style={{width:'100%'}} type="submit" class="btn btn-primary">Login with Google</button>
               </div>
             }
 
