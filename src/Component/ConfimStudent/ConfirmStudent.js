@@ -1,19 +1,15 @@
 import React, { useState } from 'react';
+import Swal from 'sweetalert2'
+
 
 const ConfirmStudent = ({ students, setNotification, notification }) => {
-    const [formData, setFormdata] = useState({});
-
-    const [studentId, setStudentId] = useState('');
-    console.log(studentId)
-
-    const handleOnBlur = e =>{
-        const newData = {...formData};
-        newData[e.target.name] = e.target.value;
-        setFormdata(newData);
-    }
+    const [formData, setFormdata] = useState({
+        paidAmount:0
+    });
 
 
-    const submitAddmission = (id, e) => {
+
+    const submitAddmission = (id) => {
 
        const dataForSubmission ={
         date:new Date(),
@@ -40,31 +36,37 @@ const ConfirmStudent = ({ students, setNotification, notification }) => {
                 }
 
             })
-            e.preventDefault();
+          
     }
 
 const handlConfirm= id=>{
-    setStudentId(id)
-    const form = document.getElementById('confirmForm');
-    form.style.display= 'block';
+  
+
+    Swal.fire({
+        title: 'Confirm Addmission',
+        html: `<input type="number" id="paidAmmount" class="swal2-input" placeholder="Paid Ammount">`,
+        confirmButtonText: 'Confirm Addmission',
+        focusConfirm: true,
+        
+        preConfirm: () => {
+          const ammount = Swal.getPopup().querySelector('#paidAmmount').value
+          if (!ammount) {
+            Swal.showValidationMessage(`Please enter Paid Ammount`)
+          }
+          submitAddmission(id)
+         const newdata = {...formData}
+         newdata.paidAmount=ammount;
+         setFormdata(newdata);
+        }
+      })
+  
+
 }
     
 
-const inputStyle = {
-    padding:'10px 2px',
-    marginRight:'10px',
-    width:'45%',
-    borderRadius:'10px'
-}
     return (
         <div>
-  {
-                <form onSubmit={()=>submitAddmission(studentId)} style={{padding:'20px', display:'none'}} id="confirmForm">
-                    <input onBlur={handleOnBlur} style={inputStyle} type="number" className="" name="paidAmount" id="" placeholder="Payment Ammount" required/>
-                  
-                    <button style={inputStyle}  type="submit">Confirm Addmission</button>
-                </form>
-            }
+ 
             <table class="table">
 
                 <thead>

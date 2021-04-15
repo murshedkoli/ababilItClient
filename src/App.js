@@ -46,13 +46,13 @@ const [loggedInUser, setLoggedInUser] = useState({});
               <StudentsPublic></StudentsPublic>
             </Route>
 
-            <PrivateRoute path="/admin">
+            <Route path="/admin">
               <Admin></Admin>
-            </PrivateRoute>
+            </Route>
 
-            <PrivateRoute  path="/newapplication">
+            <Route  path="/newapplication">
               <NewApplicatin></NewApplicatin>
-            </PrivateRoute>
+            </Route>
 
 
           </Switch>
