@@ -9,7 +9,6 @@ const Admin = () => {
   
   document.title = "Admin Page - Ababil Information Technology";
 
-
   const [students, setStudents] = useState([]);
   
   useEffect(() => {
@@ -20,13 +19,13 @@ const Admin = () => {
         setStudents(data)
 
       })
-  }, [])
+  } )
 
 
   
   const submitAddmission = (id, paidAmount) => {
 
-    console.log(id)
+  
     const dataForSubmission ={
      ammount : paidAmount,
     }
@@ -67,15 +66,16 @@ const Admin = () => {
         }
        
        const paidAmount=parseInt(ammount)+parseInt(oldPayment);
-       submitAddmission(id, paidAmount)
+       submitAddmission(id, paidAmount);
+       
        return { ammount: ammount, total:paidAmount}
       }
     }).then((result) => {
-     
       Swal.fire(`
         ${name}'s Payment ${result.value.ammount} Was Added Successfully;
         
         Total Payment is : ${result.value.total}`
+        
         .trim())
     })
 

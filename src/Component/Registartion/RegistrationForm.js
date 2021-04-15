@@ -6,7 +6,9 @@ import Form from './Form';
 
 const RegistrationForm = () => {
 
-    const [imageUrl, setImageUrl] = useState('');
+    const [imageUrl, setImageUrl] = useState('https://www.thedome.org/wp-content/uploads/2019/06/300x300-Placeholder-Image.jpg');
+
+    const [uploadPercentage, setUploadPercentage] = useState(0);
 
     const [formData, setFormdata] = useState({});
 
@@ -22,15 +24,75 @@ const RegistrationForm = () => {
 
 
 
+
     const handleImgUpload = event => {
+
+        const image = event.target.files[0];
+        const imagefile = event.target;
+       
+
+        var allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif)$/i;
+
+        
+        if (!allowedExtensions.exec(imagefile.value)){
+            swal({
+                title: "Your file is not a photo",
+                text: "Select a photo",
+                icon: "warning",
+                button: "Okay!",
+              });
+
+              imagefile.value="";
+        }
+        
+        
+        if(image.size > 500000){
+            swal({
+                title: "Your file is big",
+                text: "Select A small size file!",
+                icon: "warning",
+                button: "Okay!",
+
+              });
+              imagefile.value="";
+        } 
+    
+        
+        else{
+            uploadImage(image)
+        }
+
+    }
+
+
+
+    const uploadImage =(image)=>{
+        
         const imageData = new FormData();
         imageData.set('key', '707ad238025806ece51d9e63679151f7')
-        imageData.append('image', event.target.files[0]);
+        imageData.append('image', image);
 
-        axios.post('https://api.imgbb.com/1/upload', imageData)
+       console.log(image)
+
+        const options = {
+            onUploadProgress: (ProgressEvent) => {
+                const { loaded, total } = ProgressEvent;
+                let percent = Math.floor((loaded * 100) / total)
+
+                if (percent < 100) {
+                    setUploadPercentage(percent)
+                }
+            }
+        }
+
+        axios.post('https://api.imgbb.com/1/upload', imageData, options)
             .then(response => {
                 setImageUrl(response.data.data.display_url);
-
+                setUploadPercentage(100, () => {
+                    setTimeout(() => {
+                        setUploadPercentage(0);
+                    }, 1000);
+                })
             })
             .catch(err => {
                 console.log(err);
@@ -56,7 +118,6 @@ const RegistrationForm = () => {
             district: formData.district,
             birthDay: formData.birthDate,
             gender: formData.gender,
-            password: formData.password,
             course: formData.selectedCourse
         }
 
@@ -70,7 +131,7 @@ const RegistrationForm = () => {
             .then(data => {
                 console.log(data)
                 if (data.insertedCount > 0) {
-                   
+
                     setSuccessfull(false)
                 } else {
 
@@ -78,7 +139,7 @@ const RegistrationForm = () => {
                 }
             })
 
-      
+
 
     }
 
@@ -96,47 +157,47 @@ const RegistrationForm = () => {
     //     .then(res => res.json())
     //     .then(data => console.log(data))
 
-const handlePopUp =(e)=>{
+    const handlePopUp = (e) => {
 
 
-    if(formData.studentPhoneNumber.length===11 || formData.fatherPhoneNumber.length===11){
-        swal({
-            title: `Hey ${formData.studentName} Are you sure?`,
-            text: `Submit Application For "${formData.selectedCourse}" Course`,
-            icon: "warning",
-            buttons:  ["Cencel","Submit"] ,
-            dangerMode: true,
-        })
-            .then((willDelete) => {
-                if (willDelete) {
-                    swal(`${formData.studentName} Successfully Register for"${formData.selectedCourse}" Course`, {
-                        icon: "success",
-                        buttons:handleSubmitForm(),
-                    });
-                } else {
-                    swal("Your Application Not Successfully Submited");
-                }
-            });
+        if (formData.studentPhoneNumber.length === 11 || formData.fatherPhoneNumber.length === 11) {
+            swal({
+                title: `Hey ${formData.studentName} Are you sure?`,
+                text: `Submit Application For "${formData.selectedCourse}" Course`,
+                icon: "warning",
+                buttons: ["Cencel", "Submit"],
+                dangerMode: true,
+            })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        swal(`${formData.studentName} Successfully Register for"${formData.selectedCourse}" Course`, {
+                            icon: "success",
+                            buttons: handleSubmitForm(),
+                        });
+                    } else {
+                        swal("Your Application Not Successfully Submited");
+                    }
+                });
 
 
-    }
-    else{
-        swal("Please Give Correct Phone Number!", `Your Phone Number: ${formData.studentPhoneNumber} 
+        }
+        else {
+            swal("Please Give Correct Phone Number!", `Your Phone Number: ${formData.studentPhoneNumber} 
          Or 
          Your Father's Phone Number :${formData.fatherPhoneNumber} are Not Valid. !`, "warning");
-    }
+        }
 
- 
+
 
         e.preventDefault();
-}
+    }
 
-    
+
 
     return (
         <div style={{ margin: 'auto' }} className="col-md-5 col-sm-9">
 
-        <Form handlePopUp={handlePopUp} handleImgUpload={handleImgUpload} handleOnBlur={handleOnBlur}></Form>
+            <Form uploadPercentage={uploadPercentage} handlePopUp={handlePopUp} handleImgUpload={handleImgUpload} imageUrl={imageUrl} handleOnBlur={handleOnBlur}></Form>
 
         </div>
     );
