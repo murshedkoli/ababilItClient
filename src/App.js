@@ -14,6 +14,7 @@ import NewApplicatin from "./Component/AdminComponent/NewApplication/NewApplicat
 import PrivateRoute from "./Component/PrivateRoute/PrivateRoute";
 import StudentsPublic from "./Component/StudentsPublic/StudentsPublic";
 import TotalPayment from "./Component/AdminComponent/TotalPayment/TotalPayment";
+import PrintApplication from "./Component/Registartion/PrintApplication/PrintApplication";
 
 export const mainUser = createContext();
 
@@ -58,6 +59,10 @@ const [loggedInUser, setLoggedInUser] = useState({});
             <PrivateRoute  path="/totalpayment">
               <TotalPayment></TotalPayment>
             </PrivateRoute>
+
+            <Route  path="/printapplication">
+              <PrintApplication></PrintApplication>
+            </Route>
 
 
           </Switch>

@@ -1,10 +1,12 @@
 import axios from 'axios';
 import React, { useState } from 'react';
+import { useHistory } from 'react-router';
 import swal from 'sweetalert';
 import Form from './Form';
 
 
 const RegistrationForm = () => {
+    const history =useHistory();
 
     const [imageUrl, setImageUrl] = useState('https://www.thedome.org/wp-content/uploads/2019/06/300x300-Placeholder-Image.jpg');
 
@@ -12,7 +14,7 @@ const RegistrationForm = () => {
 
     const [formData, setFormdata] = useState({});
 
-    const [successfull, setSuccessfull] = useState(true);
+    
 
 
 
@@ -29,36 +31,36 @@ const RegistrationForm = () => {
 
         const image = event.target.files[0];
         const imagefile = event.target;
-       
+
 
         var allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif)$/i;
 
-        
-        if (!allowedExtensions.exec(imagefile.value)){
+
+        if (!allowedExtensions.exec(imagefile.value)) {
             swal({
                 title: "Your file is not a photo",
                 text: "Select a photo",
                 icon: "warning",
                 button: "Okay!",
-              });
+            });
 
-              imagefile.value="";
+            imagefile.value = "";
         }
-        
-        
-        if(image.size > 500000){
+
+
+        if (image.size > 500000) {
             swal({
                 title: "Your file is big",
                 text: "Select A small size file!",
                 icon: "warning",
                 button: "Okay!",
 
-              });
-              imagefile.value="";
-        } 
-    
-        
-        else{
+            });
+            imagefile.value = "";
+        }
+
+
+        else {
             uploadImage(image)
         }
 
@@ -66,13 +68,13 @@ const RegistrationForm = () => {
 
 
 
-    const uploadImage =(image)=>{
-        
+    const uploadImage = (image) => {
+
         const imageData = new FormData();
         imageData.set('key', '707ad238025806ece51d9e63679151f7')
         imageData.append('image', image);
 
-       console.log(image)
+        console.log(image)
 
         const options = {
             onUploadProgress: (ProgressEvent) => {
@@ -108,7 +110,7 @@ const RegistrationForm = () => {
             addmissionDate: '',
             confirmAddmission: false,
             phoneNumber: formData.studentPhoneNumber,
-            faterName: formData.faterName,
+            fatherName: formData.fatherName,
             motherName: formData.motherName,
             name: formData.studentName,
             fatherPhoneNumber: formData.fatherPhoneNumber,
@@ -121,7 +123,7 @@ const RegistrationForm = () => {
             course: formData.selectedCourse
         }
 
-        console.log(studentData)
+       
         fetch('https://ababil-it-server.herokuapp.com/addstudent', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -129,19 +131,20 @@ const RegistrationForm = () => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data)
-                if (data.insertedCount > 0) {
+               
+            const PrintInfo = JSON.stringify(studentData)
 
-                    setSuccessfull(false)
-                } else {
-
-                    setSuccessfull(true)
-                }
+              sessionStorage.setItem('printInfo', PrintInfo )
+              
+              history.push('/printapplication')
+            
             })
 
 
 
     }
+
+   
 
     // const admin ={
     //     Name: 'Murshed Al Main',
@@ -173,12 +176,13 @@ const RegistrationForm = () => {
                         swal(`${formData.studentName} Successfully Register for"${formData.selectedCourse}" Course`, {
                             icon: "success",
                             buttons: handleSubmitForm(),
+                            
                         });
                     } else {
                         swal("Your Application Not Successfully Submited");
                     }
                 });
-
+               
 
         }
         else {
@@ -195,10 +199,12 @@ const RegistrationForm = () => {
 
 
     return (
-        <div style={{ margin: 'auto' }} className="col-md-5 col-sm-9">
+        <div>
+            <div id="regForm" style={{ margin: 'auto' }} className="col-md-5 col-sm-9">
 
-            <Form uploadPercentage={uploadPercentage} handlePopUp={handlePopUp} handleImgUpload={handleImgUpload} imageUrl={imageUrl} handleOnBlur={handleOnBlur}></Form>
+                <Form uploadPercentage={uploadPercentage} handlePopUp={handlePopUp} handleImgUpload={handleImgUpload} imageUrl={imageUrl} handleOnBlur={handleOnBlur}></Form>
 
+            </div>
         </div>
     );
 };
