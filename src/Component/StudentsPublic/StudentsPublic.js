@@ -6,9 +6,9 @@ const StudentsPublic = () => {
 
 
   document.title = "Admitted Student's - Ababil Information Technology"
-    
-const [students, setStudents] = useState([]);
-console.log(students)
+
+  const [students, setStudents] = useState([]);
+  console.log(students)
 
 
   useEffect(() => {
@@ -17,27 +17,31 @@ console.log(students)
       .then(data => {
 
         setStudents(data)
- 
+
       })
   }, [])
 
 
 
-    return (
-        <div style={{
-            width: '100%',
-            height: '100vh',
-            background: '#37517e'
-          }}>
-            <Header></Header>
-            <h1 style={{color:'white', textAlign:'center', fontWeight:'bold'}}>Admited Students</h1>
-            <div className="d-flex p-5">
-            {
-                students.map(std=> <SingleStudent student={std}></SingleStudent>)
-            }
+  return (
+    <div style={{
+      minWidth: '100vh',
+      minHeight: '100vh',
+      background: '#37517e'
+    }}>
+      <Header></Header>
+      <h1 style={{ color: 'white', textAlign: 'center', fontWeight: 'bold' }}>Admited Students</h1>
+      <div className="d-flex p-5" style={{ flexWrap: 'wrap' }}>
+        {
+          students.map(std =>
+            <div className="card p-1 m-1 col-3" style={{ width: '280px' }}>
+              <SingleStudent student={std}></SingleStudent>
             </div>
-        </div>
-    );
+          )
+        }
+      </div>
+    </div>
+  );
 };
 
 export default StudentsPublic;
