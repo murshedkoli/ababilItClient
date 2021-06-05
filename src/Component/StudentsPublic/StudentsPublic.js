@@ -31,7 +31,7 @@ const StudentsPublic = () => {
     }}>
       <Header></Header>
       <h1 style={{ color: 'white', textAlign: 'center', fontWeight: 'bold' }}>Admited Students</h1>
-      <div className="d-flex p-5" style={{ flexWrap: 'wrap' }}>
+      <div className="d-flex p-5" style={{ flexWrap: 'wrap', justifyContent: 'center' }}>
         {
           students.map(std =>
             <div className="card p-1 m-1 col-3" style={{ width: '280px' }}>
