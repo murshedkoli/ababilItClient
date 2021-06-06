@@ -15,58 +15,63 @@ import PrivateRoute from "./Component/PrivateRoute/PrivateRoute";
 import StudentsPublic from "./Component/StudentsPublic/StudentsPublic";
 import TotalPayment from "./Component/AdminComponent/TotalPayment/TotalPayment";
 import PrintApplication from "./Component/Registartion/PrintApplication/PrintApplication";
+import TotalExpense from "./Component/AdminComponent/TotalExpense/TotalExpense";
 
 export const mainUser = createContext();
 
 function App() {
 
-const [loggedInUser, setLoggedInUser] = useState({});
+  const [loggedInUser, setLoggedInUser] = useState({});
 
 
 
   return (
     <mainUser.Provider value={[loggedInUser, setLoggedInUser]} >
-        <Router>
-          <Switch>
-            <Route exact path="/">
-              <Home></Home>
-            </Route>
+      <Router>
+        <Switch>
+          <Route exact path="/">
+            <Home></Home>
+          </Route>
 
-            <Route  path="/courses">
-              <Courses></Courses>
-            </Route>
+          <Route path="/courses">
+            <Courses></Courses>
+          </Route>
 
-            <Route  path="/registration">
-              <Registration></Registration>
-            </Route>
+          <Route path="/registration">
+            <Registration></Registration>
+          </Route>
 
-            <Route  path="/admin/login">
-              <AdminLoginPage></AdminLoginPage>
-            </Route>
+          <Route path="/admin/login">
+            <AdminLoginPage></AdminLoginPage>
+          </Route>
 
-            <Route  path="/publicstudents">
-              <StudentsPublic></StudentsPublic>
-            </Route>
+          <Route path="/publicstudents">
+            <StudentsPublic></StudentsPublic>
+          </Route>
 
-            <PrivateRoute path="/admin">
-              <Admin></Admin>
-            </PrivateRoute>
+          <PrivateRoute path="/admin">
+            <Admin></Admin>
+          </PrivateRoute>
 
-            <PrivateRoute  path="/newapplication">
-              <NewApplicatin></NewApplicatin>
-            </PrivateRoute>
+          <PrivateRoute path="/newapplication">
+            <NewApplicatin></NewApplicatin>
+          </PrivateRoute>
 
-            <PrivateRoute  path="/totalpayment">
-              <TotalPayment></TotalPayment>
-            </PrivateRoute>
+          <PrivateRoute path="/totalpayment">
+            <TotalPayment></TotalPayment>
+          </PrivateRoute>
 
-            <Route  path="/printapplication">
-              <PrintApplication></PrintApplication>
-            </Route>
+          <PrivateRoute path="/totalexpense">
+            <TotalExpense></TotalExpense>
+          </PrivateRoute>
+
+          <Route path="/printapplication">
+            <PrintApplication></PrintApplication>
+          </Route>
 
 
-          </Switch>
-        </Router>
+        </Switch>
+      </Router>
     </mainUser.Provider>
   );
 }
