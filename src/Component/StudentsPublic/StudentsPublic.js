@@ -8,7 +8,6 @@ const StudentsPublic = () => {
   document.title = "Admitted Student's - Ababil Information Technology"
 
   const [students, setStudents] = useState([]);
-  console.log(students)
 
 
   useEffect(() => {
@@ -16,7 +15,7 @@ const StudentsPublic = () => {
       .then(res => res.json())
       .then(data => {
 
-        setStudents(data)
+        setStudents(data.reverse())
 
       })
   }, [])

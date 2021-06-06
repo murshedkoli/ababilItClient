@@ -21,7 +21,7 @@ const NewApplication = () => {
       .then(res => res.json())
       .then(data => {
 
-        setStudents(data)
+        setStudents(data.reverse())
 
       })
   }, [notification])
@@ -38,8 +38,8 @@ const NewApplication = () => {
       <Sidebar></Sidebar>
 
       <div style={{ marginLeft: '260px' }}>
-        <h1 style={{ color: 'green', textAlign:'center' }}>{notification.update}</h1>
-        <h1 style={{ color: 'red', textAlign:'center' }}>{notification.failed}</h1>
+        <h1 style={{ color: 'green', textAlign: 'center' }}>{notification.update}</h1>
+        <h1 style={{ color: 'red', textAlign: 'center' }}>{notification.failed}</h1>
         <ConfirmStudent students={students} setNotification={setNotification} notification={notification} ></ConfirmStudent>
 
 
