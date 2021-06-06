@@ -1,4 +1,4 @@
-import React, {  useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Header from '../../Home/Header/Header';
 import Sidebar from '../Sidebar/Sidebar';
 import Swal from 'sweetalert2'
@@ -6,82 +6,82 @@ import Swal from 'sweetalert2'
 
 const Admin = () => {
 
-  
+
   document.title = "Admin Page - Ababil Information Technology";
 
   const [students, setStudents] = useState([]);
-  
+
   useEffect(() => {
     fetch('https://ababil-it-server.herokuapp.com/students')
       .then(res => res.json())
       .then(data => {
 
-        setStudents(data)
+        setStudents(data.reverse())
 
       })
-  } )
+  })
 
 
-  
+
   const submitAddmission = (id, paidAmount) => {
 
-  
-    const dataForSubmission ={
-     ammount : paidAmount,
+
+    const dataForSubmission = {
+      ammount: paidAmount,
     }
 
-     fetch(`https://ababil-it-server.herokuapp.com/confirm/${id}`, {
-         method: 'PATCH',
-         headers: { 'Content-Type': 'application/json' },
-         body: JSON.stringify(dataForSubmission)
-     })
-         .then(res => res.json())
-         .then(data => {
-             if (data.modifiedCount > 0) {
-               
-             } else {
-              
-             }
+    fetch(`https://ababil-it-server.herokuapp.com/confirm/${id}`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(dataForSubmission)
+    })
+      .then(res => res.json())
+      .then(data => {
+        if (data.modifiedCount > 0) {
 
-         })
-       
- }
+        } else {
+
+        }
+
+      })
+
+  }
 
 
- const handlConfirm= (id, oldPayment, name)=>{
+  const handlConfirm = (id, oldPayment, name) => {
 
-  
 
-  Swal.fire({
-    
+
+    Swal.fire({
+
       title: 'Update Payment',
       html: `<input type="number" id="paidAmmount" class="swal2-input" placeholder="Paid Ammount">`,
       confirmButtonText: 'Confirm Payment',
       focusConfirm: true,
-      
+
       preConfirm: () => {
         const ammount = Swal.getPopup().querySelector('#paidAmmount').value
-        if (ammount<0) {
+        if (ammount < 0) {
           Swal.showValidationMessage(`Please enter Valid Paid Ammount`)
         }
-       
-       const paidAmount=parseInt(ammount)+parseInt(oldPayment);
-       submitAddmission(id, paidAmount);
-       
-       return { ammount: ammount, total:paidAmount}
+
+        const paidAmount = parseInt(ammount) + parseInt(oldPayment);
+        submitAddmission(id, paidAmount);
+
+        return { ammount: ammount, total: paidAmount }
       }
     }).then((result) => {
       Swal.fire(`
         ${name}'s Payment ${result.value.ammount} Was Added Successfully;
         
         Total Payment is : ${result.value.total}`
-        
+
         .trim())
     })
 
 
-}
- 
+  }
+
 
 
 
@@ -95,7 +95,7 @@ const Admin = () => {
       <Sidebar></Sidebar>
 
       <div style={{ marginLeft: '260px' }}>
-      <h1 style={{textAlign:'center', color:'white'}}>All Student Here</h1>
+        <h1 style={{ textAlign: 'center', color: 'white' }}>All Student Here</h1>
 
 
         <table class="table table-striped table-dark">
@@ -121,7 +121,7 @@ const Admin = () => {
                 <td>{student.paymentAmmount} Taka</td>
                 <td>{student.phoneNumber}</td>
                 <td>{student.course}</td>
-                <td><button onClick={()=> handlConfirm(student._id, student.paymentAmmount, student.name)} className="btn btn-outline-success">Update Payment</button></td>
+                <td><button onClick={() => handlConfirm(student._id, student.paymentAmmount, student.name)} className="btn btn-outline-success">Update Payment</button></td>
               </tr>)
             }
 

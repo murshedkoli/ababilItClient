@@ -1,5 +1,6 @@
 import React from 'react';
 import logo from '../../../image/logo.png';
+import './PrintApplication.css'
 
 const PrintFrom = ({ copy }) => {
 
@@ -23,11 +24,11 @@ const PrintFrom = ({ copy }) => {
 
 
 
-        
+
 
     return (
         <div className="d-flex justify-content-center">
-            <div style={{ border: '1px solid black', width:'700px' }} className="row">
+            <div style={{ border: '1px solid black', width: '700px' }} className="row">
 
                 <div className="col-9 " >
                     <div className="d-flex" >
@@ -35,13 +36,13 @@ const PrintFrom = ({ copy }) => {
                             <img className="img-fluid" src={logo} alt="" />
                         </div>
                         <div className="col-10 text-center">
-                            <p style={{ fontSize: '30px', textTransform: 'uppercase', marginBottom: '2px' }}>Ababil It</p>
+                            <p style={{ fontSize: '25px', textTransform: 'uppercase', marginBottom: '1px' }}>Ababil It</p>
                             <p>Computer Training and Web Design Center</p>
                         </div>
                     </div>
 
                     <div >
-                        <table class="table table-bordered table-sm">
+                        <table class="table table-bordered table-sm" style={{ marginTop: '1px', marginBottom: '1px', textAlign: 'left' }}>
 
                             <tbody>
                                 <tr>
@@ -68,9 +69,7 @@ const PrintFrom = ({ copy }) => {
                                 </tr>
                             </tbody>
                         </table>
-                    </div>
-                    <div >
-                        <table class="table table-bordered table-sm">
+                        <table class="table table-bordered table-sm" style={{ marginTop: '1px', marginBottom: '1px' }}>
 
                             <tbody>
                                 <tr>
@@ -86,18 +85,19 @@ const PrintFrom = ({ copy }) => {
                     </div>
 
 
+
                 </div>
-                <div className="col-3 text-center" style={{ padding: '5px' }}>
-                    <div style={{ border: '1px solid black', padding: '10px' }}>
-                        <h4>{copy}</h4>
-                        <img style={{height:'150px', width:'150px'}} className="img-fluid" src={imgUrl} alt="" />
-                        <div style={{ width: '100%', height: '50px', border: '1px solid black', marginTop: '5px' }}></div>
+                <div className="col-3 text-center" style={{ padding: '2px' }}>
+                    <div style={{ border: '1px solid black', padding: '2px' }}>
+                        <p>{copy}</p>
+                        <img style={{ height: '150px', width: '150px' }} className="img-fluid" src={imgUrl} alt="" />
+                        <div style={{ width: '100%', height: '50px', border: '1px solid black', marginTop: '3px' }}></div>
                     </div>
                 </div>
 
                 <div >
                     <div >
-                        <table class="table table-bordered table-sm">
+                        <table class="table table-bordered table-sm" style={{ marginTop: '1px', marginBottom: '1px' }}>
 
                             <tbody>
                                 <tr>
@@ -118,7 +118,7 @@ const PrintFrom = ({ copy }) => {
 
 
                     <div >
-                        <table class="table table-bordered table-sm">
+                        <table class="table table-bordered table-sm" style={{ marginTop: '1px', marginBottom: '1px' }}>
 
                             <tbody>
                                 <tr>
@@ -147,14 +147,14 @@ const PrintFrom = ({ copy }) => {
                     <div className="col-9 ">
 
                         <div >
-                            <table class="table table-bordered table-sm">
+                            <table class="table table-bordered table-sm" style={{ textAlign: 'left' }}>
 
                                 <tbody>
                                     <tr>
                                         <th scope="row">Payment :</th>
-                                       
+
                                         <th scope="row">Due:</th>
-                                      
+
 
                                     </tr>
 
