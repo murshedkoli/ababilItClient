@@ -364,3 +364,31 @@ h1, h2, h3, h4, h5, h6 {
 .navbar-mobile .dropdown > .dropdown-active {
   display: block;
 }
+
+
+.mobile-nav{
+  display: none;
+  background-color: rgba(255, 255, 255, 0.192);
+  width: 100%;
+}
+
+.mobile-nav ul li {
+  list-style-type: none;
+  
+}
+
+.mobile-nav ul li:hover {
+  background-color: rgb(13, 3, 102);
+  
+}
+
+
+
+@media (max-width: 991px) {
+  .mobile-nav{
+    display: block;
+  }
+  .abbb {
+    display: none;
+  }
+}
