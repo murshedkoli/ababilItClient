@@ -24,16 +24,15 @@ const StudentsPublic = () => {
 
   return (
     <div style={{
-      minWidth: '100vh',
       minHeight: '100vh',
       background: '#37517e'
     }}>
       <Header></Header>
       <h1 style={{ color: 'white', textAlign: 'center', fontWeight: 'bold' }}>Admited Students</h1>
-      <div className="d-flex p-5" style={{ flexWrap: 'wrap', justifyContent: 'center' }}>
+      <div className="d-flex" style={{ flexWrap: 'wrap', justifyContent: 'center' }}>
         {
           students.map(std =>
-            <div className="card p-1 m-1 col-3" style={{ width: '280px' }}>
+            <div className="card p-1 m-1 col-md-6 col-sm-12" style={{ width: '280px' }}>
               <SingleStudent student={std}></SingleStudent>
             </div>
           )
