@@ -6,6 +6,7 @@ const AddExpense = () => {
 
     const [formData, setFormData] = useState({});
 
+
     const onBlurInput = (e) => {
         const oldData = { ...formData };
         oldData[e.target.name] = e.target.value;
@@ -56,7 +57,7 @@ const AddExpense = () => {
                 <input onBlur={onBlurInput} type="text" name="name" placeholder="Name" />
                 <input onBlur={onBlurInput} type="text" name="purpose" placeholder="Purpose Of Expense" />
                 <input onBlur={onBlurInput} type="number" name="ammount" placeholder="Ammount" />
-                <input onBlur={onBlurInput} type="date" />
+                <input onBlur={onBlurInput} type="date" name="date" />
                 <input type="submit" value="Add Expense" />
             </form>
         </div>
