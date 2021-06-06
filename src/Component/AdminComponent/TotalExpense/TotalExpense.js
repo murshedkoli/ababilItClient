@@ -50,8 +50,9 @@ const TotalExpense = () => {
                         <thead>
                             <tr>
                                 <th scope="col">Expense Date</th>
-                                <th scope="col">Name </th>
+                                <th scope="col">Paid By </th>
                                 <th scope="col">Purpose </th>
+                                <th scope="col">Received By </th>
                                 <th scope="col"> Ammount</th>
                             </tr>
                         </thead>
@@ -61,6 +62,7 @@ const TotalExpense = () => {
                                     <th >{new Date(expense.date).toDateString()}</th>
                                     <td>{expense.name}</td>
                                     <td>{expense.purpose}</td>
+                                    <td>{expense.receiver}</td>
                                     <td>{expense.ammount} Taka</td>
                                 </tr>)
 

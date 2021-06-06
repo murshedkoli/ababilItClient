@@ -54,9 +54,10 @@ const AddExpense = () => {
     return (
         <div style={{ padding: '20px', display: 'flex', justifyContent: 'center' }}>
             <form onSubmit={submitFormData}>
-                <input onBlur={onBlurInput} type="text" name="name" placeholder="Name" />
+                <input onBlur={onBlurInput} type="text" name="name" placeholder="Paid By" />
                 <input onBlur={onBlurInput} type="text" name="purpose" placeholder="Purpose Of Expense" />
                 <input onBlur={onBlurInput} type="number" name="ammount" placeholder="Ammount" />
+                <input onBlur={onBlurInput} type="text" name="receiver" placeholder="Received By" />
                 <input onBlur={onBlurInput} type="date" name="date" />
                 <input type="submit" value="Add Expense" />
             </form>
