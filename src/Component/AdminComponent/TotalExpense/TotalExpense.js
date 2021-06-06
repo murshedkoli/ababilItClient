@@ -58,7 +58,7 @@ const TotalExpense = () => {
                         <tbody >
                             {
                                 expenses.map((expense, index) => <tr>
-                                    <th >{new Date().toDateString(expense.date)}</th>
+                                    <th >{new Date(expense.date).toDateString()}</th>
                                     <td>{expense.name}</td>
                                     <td>{expense.purpose}</td>
                                     <td>{expense.ammount} Taka</td>
