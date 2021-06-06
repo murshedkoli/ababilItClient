@@ -75,7 +75,7 @@ const TotalExpense = () => {
                         <thead>
                             <tr>
 
-                                <th colspan="3">Total Expense</th>
+                                <th colspan="4">Total Expense</th>
                                 <th colspan="1">{totalPayment()} Taka</th>
                             </tr>
                         </thead>
