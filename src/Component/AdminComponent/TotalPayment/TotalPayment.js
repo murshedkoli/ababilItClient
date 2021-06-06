@@ -21,11 +21,11 @@ const TotalPayment = () => {
     }, [])
 
 
-const totalPayment =()=>{
-   const total = students.reduce((total, student)=> total+student.paymentAmmount, 0);
-   return total;
+    const totalPayment = () => {
+        const total = students.reduce((total, student) => total + student.paymentAmmount, 0);
+        return total;
 
-}
+    }
 
 
     return (
@@ -62,16 +62,16 @@ const totalPayment =()=>{
 
                             }
 
-                            
+
                         </tbody>
 
                         <thead>
-                                <tr>
-                                    
-                                    <th colspan="3">Total Payment</th>
-                                    <th colspan="1">{totalPayment()}</th>
-                                </tr>
-                            </thead>
+                            <tr>
+
+                                <th colspan="3">Total Payment</th>
+                                <th colspan="1">{totalPayment()}</th>
+                            </tr>
+                        </thead>
 
                     </table>
 

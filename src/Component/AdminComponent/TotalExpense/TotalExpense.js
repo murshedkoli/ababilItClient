@@ -11,21 +11,43 @@ const TotalExpense = () => {
 
     const [expenses, setExpenses] = useState([]);
 
+    const [reload, setReload] = useState(false);
+
+
+
+    const [students, setStudents] = useState([]);
+
     useEffect(() => {
-        //https://ababil-it-server.herokuapp.com
-        fetch('https://ababil-it-server.herokuapp.com/expenses')
+        fetch('https://ababil-it-server.herokuapp.com/students')
             .then(res => res.json())
             .then(data => {
 
-                setExpenses(data)
-                console.log(data)
-
+                setStudents(data)
 
             })
     }, [])
 
 
     const totalPayment = () => {
+        const total = students.reduce((total, student) => total + student.paymentAmmount, 0);
+        return total;
+
+    }
+
+
+    useEffect(() => {
+        //https://ababil-it-server.herokuapp.com
+        fetch('https://ababil-it-server.herokuapp.com/expenses')
+            .then(res => res.json())
+            .then(data => {
+
+                setExpenses(data.reverse())
+
+            })
+    }, [reload])
+
+
+    const TotalExpenseAmmount = () => {
         const total = expenses.reduce((total, expense) => total + expense.ammount, 0);
         return total;
 
@@ -44,7 +66,8 @@ const TotalExpense = () => {
                 <Sidebar></Sidebar>
 
                 <div style={{ marginLeft: '260px' }}>
-                    <AddExpense />
+                    <h4>Total In Hand : {totalPayment() - TotalExpenseAmmount()}</h4>
+                    <AddExpense reload={reload} setReload={setReload} />
                     <table class="table table-dark">
 
                         <thead>
@@ -76,7 +99,7 @@ const TotalExpense = () => {
                             <tr>
 
                                 <th colspan="4">Total Expense</th>
-                                <th colspan="1">{totalPayment()} Taka</th>
+                                <th colspan="1">{TotalExpenseAmmount()} Taka</th>
                             </tr>
                         </thead>
 

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import swal from 'sweetalert';
 
-const AddExpense = () => {
+const AddExpense = ({ setReload, reload }) => {
 
 
     const [formData, setFormData] = useState({});
@@ -20,7 +20,8 @@ const AddExpense = () => {
             name: formData.name,
             purpose: formData.purpose,
             ammount: parseInt(formData.ammount),
-            date: formData.date
+            date: formData.date,
+            receiver: formData.receiver
         }
         //https://ababil-it-server.herokuapp.com
 
@@ -34,6 +35,7 @@ const AddExpense = () => {
 
                 if (data.insertedCount) {
                     swal("Good job!", "Expense Added Succesfully!", "success");
+                    setReload(!reload)
 
                 } else {
                     swal("Oh!", "You Failed to add Expense!", "warning");
